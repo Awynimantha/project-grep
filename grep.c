@@ -1,11 +1,14 @@
 //grep version 1
 #include<stdio.h>
 #include<dirent.h>
+#include"queue"
 
 int check(char *str,FILE *f){
     int c;
     int i;
+    struct queue *line=createq(10);
     while(( c=getc(f))!=EOF){
+	line->enque(&line,c,10);
         if(c!=str[i]) i=0;
         else i++;
         if(str[i]=='\0'){
@@ -17,18 +20,19 @@ int check(char *str,FILE *f){
 
 }
 void filecheck(char *val,char *file){
-    FILE * f=fopen(val,"r");
+    
+    FILE * f=fopen(file,"r");
     if(f==NULL){
-       // printf("No directory");
+    //   printf("No directory");
         return ;
     }
     
     int res=check(val,f);
     if(res){
-        printf("%s-%s",file,val);
+        printf("%s-%s\n",file,val);
     }
     else{
-      //  printf("%s","No entry");
+     //  printf("%s","No entry");
       return;
     }
 
