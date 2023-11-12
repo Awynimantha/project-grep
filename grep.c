@@ -39,6 +39,9 @@ void filecheck(char *val,char *file){
 }
 
 int main(int argc,char *argv[]){
+
+
+
     if(!argv[2]){
         DIR *d;
         struct dirent *dir;
